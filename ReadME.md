@@ -3,12 +3,16 @@
 <p align="center">
     <a href="/src/kotlin/kotlin.md"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
     <a href="/src/go/go.md"><img src="media/badge-go.webp" style="height: 40px;"></a>
+    <a href="/src/powershell/powershell.md"><img src="media/badge-powershell.webp" style="height: 40px;"></a>
 </p>
 
-## Day 01
+## **Day 01**
 
-* [Kotlin](/src/kotlin/src/01.kt)
-* [Go](/src/go/01/01.go)
+<p>
+    <a href="/src/kotlin/src/01.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
+    <a href="/src/go/01/01.go"><img src="media/badge-go.webp" style="height: 40px;"></a>
+    <a href="/src/powershell/01.ps1"><img src="media/badge-powershell.webp" style="height: 40px;"></a>
+</p>
 
 *More is gonna come soon...*
 
