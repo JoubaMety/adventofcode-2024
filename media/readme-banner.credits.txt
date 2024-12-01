@@ -1,0 +1,1 @@
+Original Ame-chan sprite: @nyalra (https://x.com/nyalra)

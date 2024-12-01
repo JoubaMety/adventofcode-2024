@@ -1,2 +1,5 @@
 src/kotlin/kotlin.iml
 src/kotlin/.idea/
+
+media/*.pdn
+media/*.png
