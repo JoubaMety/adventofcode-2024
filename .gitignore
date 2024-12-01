@@ -1,3 +1,7 @@
+*.exe
+*.input.txt
+*.input.example.txt
+
 src/kotlin/kotlin.iml
 src/kotlin/.idea/
 
