@@ -16,15 +16,10 @@ fun getGoodData(input: String, problemDampener: Boolean = false): Int {
             for (str in newStr) {
                 val number = str.toInt()
                 // first number, skip check
-                if (previous == -1) {
-                    previous = number
-                    continue
-                }
+                if (previous == -1) { previous = number; continue }
                 // otherwise
-                if((number == previous) ||
-                    (abs(number - previous) > 3) ||
-                    (descending == true && number > previous) ||
-                    (descending == false && number < previous)
+                if((number == previous) || (abs(number - previous) > 3) ||
+                    (descending == true && number > previous) || (descending == false && number < previous)
                 ) {
                     remainingFaults--
                     break
@@ -32,11 +27,11 @@ fun getGoodData(input: String, problemDampener: Boolean = false): Int {
                     descending = number <= previous
                 }
                 previous = number
-            }
+            } // for (str in newStr)
             if(!problemDampener) break
-        }
+        } // for (i in strings.indices)
         if(remainingFaults <= 0) safe--
-    }
+    } // for (line in lines)
     return safe
 }
 
