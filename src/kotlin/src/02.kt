@@ -1,7 +1,7 @@
 import java.io.File
 import kotlin.math.abs
 
-fun getGoodDataV2(input: String, problemDampener: Boolean = false): Int {
+fun getGoodData(input: String, problemDampener: Boolean = false): Int {
     val lines = input.lines()
     var safe = lines.count()
     for (line in lines) {
@@ -41,9 +41,12 @@ fun getGoodDataV2(input: String, problemDampener: Boolean = false): Int {
 }
 
 fun main() {
+    val title = "Advent Of Code 2024 - Day 02"
+    println(title)
+    println("-".repeat(title.length))
     val input = File("./src/02.input.txt").readText(Charsets.UTF_8)
-    val part01 = getGoodDataV2(input)
-    val part02 = getGoodDataV2(input, true)
-    println("Part 1: $part01 ${if(part01 == 279) "✅CORRECT✅" else ""}")
-    println("Part 2: $part02 ${if (part02 <= 323) "‼\uFE0FTOO LOW‼\uFE0F" else if (part02 >= 412) "‼\uFE0Ftoo high‼\uFE0F" else "❔check❔"}")
+    val part01 = getGoodData(input)
+    val part02 = getGoodData(input, true)
+    println("First Part:  $part01")
+    println("Second Part: $part02")
 }
