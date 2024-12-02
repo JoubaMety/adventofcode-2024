@@ -14,9 +14,15 @@
     <a href="/src/powershell/01.ps1"><img src="media/badge-powershell.webp" style="height: 40px;"></a>
 </p>
 
+## **Day 02**
+
+<p>
+    <a href="/src/kotlin/src/02.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
+</p>
+
 *More is gonna come soon...*
 
 # Last Words
-***Happy Christmas!***
+***Merry Christmas!***
 
 ©️ Jan "JoubaMety" Rašnovský 2024, [MIT License](/LICENSE)
