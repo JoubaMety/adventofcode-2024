@@ -28,7 +28,12 @@
 
 *More is gonna come soon...*
 
+# Images
+
+![truly Advent of Parse](/media/advent-of-parse.webp)
+
 # Last Words
+
 ***Merry Christmas!***
 
 ©️ Jan "JoubaMety" Rašnovský 2024, [MIT License](/LICENSE)
