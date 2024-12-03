@@ -20,6 +20,12 @@
     <a href="/src/kotlin/src/02.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
 </p>
 
+## **Day 03**
+
+<p>
+    <a href="/src/kotlin/src/03.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
+</p>
+
 *More is gonna come soon...*
 
 # Last Words
