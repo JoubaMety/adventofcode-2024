@@ -1,4 +1,4 @@
-![Advent Of Code 2024, Joubamety (Ame-Cha with Xmas cap & French flag painted on her left cheek)](/media/banner-readme.webp)
+[![Advent Of Code 2024, Joubamety (Ame-Cha with Xmas cap & French flag painted on her left cheek)](/media/banner-readme.webp)](https://adventofcode.com/)
 
 <p align="center">
     <a href="/src/kotlin/kotlin.md"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
@@ -6,7 +6,9 @@
     <a href="/src/powershell/powershell.md"><img src="media/badge-powershell.webp" style="height: 40px;"></a>
 </p>
 
-## **Day 01**
+# *Solutions*
+
+## [**Day 01**](https://adventofcode.com/2024/day/1)
 
 <p>
     <a href="/src/kotlin/src/01.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
@@ -14,19 +16,19 @@
     <a href="/src/powershell/01.ps1"><img src="media/badge-powershell.webp" style="height: 40px;"></a>
 </p>
 
-## **Day 02**
+## [**Day 02**](https://adventofcode.com/2024/day/2)
 
 <p>
     <a href="/src/kotlin/src/02.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
 </p>
 
-## **Day 03**
+## [**Day 03**](https://adventofcode.com/2024/day/3)
 
 <p>
     <a href="/src/kotlin/src/03.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
 </p>
 
-## **Day 04**
+## [**Day 04**](https://adventofcode.com/2024/day/4)
 
 <p>
     <a href="/src/kotlin/src/04.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
@@ -42,4 +44,4 @@
 
 ***Merry Christmas!***
 
-©️ Jan "JoubaMety" Rašnovský 2024, [MIT License](/LICENSE)
+©️ [Jan "JoubaMety" Rašnovský](https://joubamety.com) 2024, [MIT License](/LICENSE)
