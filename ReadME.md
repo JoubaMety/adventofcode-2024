@@ -26,6 +26,12 @@
     <a href="/src/kotlin/src/03.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
 </p>
 
+## **Day 04**
+
+<p>
+    <a href="/src/kotlin/src/04.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
+</p>
+
 *More is gonna come soon...*
 
 # Images
