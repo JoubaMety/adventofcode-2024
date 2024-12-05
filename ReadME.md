@@ -34,6 +34,12 @@
     <a href="/src/kotlin/src/04.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
 </p>
 
+## [**Day 05**](https://adventofcode.com/2024/day/5)
+
+<p>
+    <a href="/src/kotlin/src/05.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
+</p>
+
 *More is gonna come soon...*
 
 # Images
