@@ -6,14 +6,14 @@ import kotlin.system.measureNanoTime
 fun convertTime(nanoseconds: Long): String {
     val remainderDigits = 10.0.pow(1)
     return if (nanoseconds >= 1_000_000_000) {
-        ANSI.YELLOW + "${round(nanoseconds / 1_000_000_000.0 * remainderDigits) / remainderDigits}" + ANSI.RESET + " s"
+        ANSI.YELLOW + "${round(nanoseconds / 1_000_000_000.0 * remainderDigits) / remainderDigits}" + ANSI.RESET + " seconds"
     } else if (nanoseconds >= 1_000_000) {
-        ANSI.YELLOW + "${round(nanoseconds / 1_000_000.0 * remainderDigits) / remainderDigits}" + ANSI.RESET + " ms"
+        ANSI.YELLOW + "${round(nanoseconds / 1_000_000.0 * remainderDigits) / remainderDigits}" + ANSI.RESET + " milliseconds"
     } else if (nanoseconds >= 1_000) {
-        ANSI.YELLOW + "${round(nanoseconds / 1_000.0 * remainderDigits) / remainderDigits}" + ANSI.RESET + " μs"
+        ANSI.YELLOW + "${round(nanoseconds / 1_000.0 * remainderDigits) / remainderDigits}" + ANSI.RESET + " microseconds"
     }
     else {
-        ANSI.YELLOW + "$nanoseconds" + ANSI.RESET + " ns"
+        ANSI.YELLOW + "$nanoseconds" + ANSI.RESET + " nanoseconds (ns)"
     }
 }
 /*

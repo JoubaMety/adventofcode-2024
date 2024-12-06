@@ -7,6 +7,7 @@ object ANSI {
     const val YELLOW = "\u001b[33m"
     const val BLUE = "\u001B[34m"
     const val RESET = "\u001b[0m"
+    const val GRAY = "\u001b[90m"
 }
 
 fun sumOfMulOperations(input: String): Int {
