@@ -16,18 +16,26 @@ data class GuardPos(
 data class Coords(
     val x: Int,
     val y: Int,
-)
+) {
+    fun plus(x2: Int, y2: Int): Coords {
+        return Coords(x + x2, y + y2)
+    }
+
+    fun minus(x2: Int, y2: Int): Coords {
+        return Coords(x - x2, y - y2)
+    }
+}
 
 /*
     PART 01
  */
 
-fun day06_part1(input: List<List<Char>>): Int {
+fun day06_part1(input: List<List<Char>>): Pair<Int, List<List<Char>>> {
     val height = input.size
     val width = input[0].size
     val mutableList = day06_convertListToMutableList(input)
     while (true) {
-        val guardPos = day06_findGuardPos(mutableList) ?: return -1
+        val guardPos = day06_findGuardPos(mutableList) ?: return Pair(-1, listOf())
         val newCoords = when(guardPos.direction) {
             GuardDirection.UP -> Coords(guardPos.x, guardPos.y-1)
             GuardDirection.RIGHT -> Coords(guardPos.x+1, guardPos.y)
@@ -62,21 +70,7 @@ fun day06_part1(input: List<List<Char>>): Int {
             if (char == 'X')
                 steps++
     }
-    return steps
-}
-
-fun day06_findGuardPos(input: List<List<Char>>): GuardPos? {
-    for(y in input.indices)
-        for(x in input[y].indices)
-            if (input[y][x] == '^')
-                return GuardPos(x, y, GuardDirection.UP)
-            else if (input[y][x] == '>')
-                return GuardPos(x, y, GuardDirection.RIGHT)
-            else if (input[y][x] == '<')
-                return GuardPos(x, y, GuardDirection.LEFT)
-            else if (input[y][x] == 'v')
-                return GuardPos(x, y, GuardDirection.DOWN)
-    return null
+    return Pair(steps, mutableList)
 }
 
 /*
@@ -88,13 +82,12 @@ data class GuardRun(
     val success: Boolean = false
 )
 
-fun day06_part2(input: List<List<Char>>): Int {
+fun day06_part2(input: List<List<Char>>, firstRun: List<List<Char>>): Int {
     val height = input.size
     val width = input[0].size
     val maxTries = (height*width)
     val successes = AtomicInteger()
-    val firstRun = day06_part2_guardRun(input, maxTries) ?: return -1
-    val coordsToIntercept = day06_part2_getIndexes(firstRun.run)
+    val coordsToIntercept = day06_part2_getIndexes(firstRun)
     runBlocking {
         withContext(Dispatchers.Default) {
             day06_part2_coroutine(coordsToIntercept) { coord ->
@@ -155,72 +148,10 @@ fun day06_part2_guardRunSkipX(input: List<List<Char>>, maxTries: Int): GuardRun?
     return GuardRun(mutableListOf(), success)
 }
 
-fun day06_part2_guardRun(input: List<List<Char>>, maxTries: Int): GuardRun? {
-    val height = input.size
-    val width = input[0].size
-    val mutableList = mutableListOf<MutableList<Char>>()
-    for (list in input) {
-        mutableList.add(list.toMutableList())
-    }
-    var success = true
-    var guardPos = day06_findGuardPos(mutableList) ?: return null
-    var tries = 0
-    while (true) {
-        val newCoords = when (guardPos.direction) {
-            GuardDirection.UP -> Coords(guardPos.x, guardPos.y - 1)
-            GuardDirection.RIGHT -> Coords(guardPos.x + 1, guardPos.y)
-            GuardDirection.DOWN -> Coords(guardPos.x, guardPos.y + 1)
-            GuardDirection.LEFT -> Coords(guardPos.x - 1, guardPos.y)
-        }
-        if ((newCoords.y < 0 || newCoords.y >= height) ||
-            (newCoords.x < 0 || newCoords.x >= width)
-        ) {
-            break
-        }
-        if (mutableList[newCoords.y][newCoords.x] == '#') {
-            guardPos = when (guardPos.direction) {
-                GuardDirection.UP -> GuardPos(guardPos.x, guardPos.y, GuardDirection.RIGHT)
-                GuardDirection.RIGHT -> GuardPos(guardPos.x, guardPos.y, GuardDirection.DOWN)
-                GuardDirection.DOWN -> GuardPos(guardPos.x, guardPos.y, GuardDirection.LEFT)
-                GuardDirection.LEFT -> GuardPos(guardPos.x, guardPos.y, GuardDirection.UP)
-            }
-        } else {
-            guardPos = GuardPos(newCoords.x, newCoords.y, guardPos.direction)
-            if(mutableList[newCoords.y][newCoords.x] != '^')
-                mutableList[newCoords.y][newCoords.x] = 'X'
-        }
-        tries++
-        if(tries >= maxTries) {
-            success = false
-            break
-        }
-    }
-    return GuardRun(mutableList, success)
-}
 
-fun day06_part2_getIndexes(input: List<List<Char>>): List<Coords> {
-    val mutableList = mutableListOf<Coords>()
-    for ((y, line) in input.withIndex()) {
-        for ((x, char) in line.withIndex()) {
-            if (char == 'X')
-                mutableList.add(Coords(x, y))
-        }
-    }
-    return mutableList
-}
-
-suspend fun day06_part2_coroutine(list: List<Coords>, action: suspend (coords: Coords) -> Unit) {
-    coroutineScope {
-        for(coord in list) {
-            launch {
-                action(coord)
-            }
-        }
-    }
-}
-
-
-/* Misc functions */
+/*
+    MISC
+*/
 
 fun day06_print(input: List<List<Char>>) {
     for (line in input) {
@@ -261,9 +192,50 @@ fun day06_convertListToMutableList(input: List<List<Char>>): MutableList<Mutable
     return mutableList.toMutableList()
 }
 
+
+fun day06_findGuardPos(input: List<List<Char>>): GuardPos? {
+    for(y in input.indices)
+        for(x in input[y].indices)
+            if (input[y][x] == '^')
+                return GuardPos(x, y, GuardDirection.UP)
+            else if (input[y][x] == '>')
+                return GuardPos(x, y, GuardDirection.RIGHT)
+            else if (input[y][x] == '<')
+                return GuardPos(x, y, GuardDirection.LEFT)
+            else if (input[y][x] == 'v')
+                return GuardPos(x, y, GuardDirection.DOWN)
+    return null
+}
+
+fun day06_part2_getIndexes(input: List<List<Char>>): List<Coords> {
+    val mutableList = mutableListOf<Coords>()
+    for ((y, line) in input.withIndex()) {
+        for ((x, char) in line.withIndex()) {
+            if (char == 'X')
+                mutableList.add(Coords(x, y))
+        }
+    }
+    return mutableList
+}
+
+suspend fun day06_part2_coroutine(list: List<Coords>, action: suspend (coords: Coords) -> Unit) {
+    coroutineScope {
+        for(coord in list) {
+            launch {
+                action(coord)
+            }
+        }
+    }
+}
+
+/*
+    MAIN
+ */
+
 fun main() {
     val input: String
     val part01: Int
+    val part01list: List<List<Char>>
     val part02: Int
     val convertedInput: List<List<Char>>
     val elapsedLoadFile = measureNanoTime {
@@ -274,10 +246,16 @@ fun main() {
         convertedInput = day06_convertInput(input)
     }
     val elapsedPart01 = measureNanoTime {
-        part01 = day06_part1(convertedInput)
+        val pair = day06_part1(convertedInput)
+        part01 = pair.first
+        part01list = pair.second
     }
     val elapsedPart02 = measureNanoTime {
-        part02 = day06_part2(convertedInput)
+        part02 = if(part01list.isNotEmpty()) {
+            day06_part2(convertedInput, part01list)
+        } else {
+            0
+        }
     }
 
     val title = "Advent Of Code 2024 - Day 06"

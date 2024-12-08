@@ -40,10 +40,16 @@
     <a href="/src/kotlin/src/05.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
 </p>
 
-## [**Day 05**](https://adventofcode.com/2024/day/6)
+## [**Day 06**](https://adventofcode.com/2024/day/6)
 
 <p>
     <a href="/src/kotlin/src/06.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
+</p>
+
+## [**Day 08**](https://adventofcode.com/2024/day/8)
+
+<p>
+    <a href="/src/kotlin/src/08.kt"><img src="media/badge-kotlin.webp" style="height: 40px;"></a>
 </p>
 
 *More is gonna come soon...*
