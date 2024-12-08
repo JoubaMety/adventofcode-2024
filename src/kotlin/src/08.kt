@@ -31,42 +31,42 @@ fun day08_getInput(input: Path): Pair<MutableMap<Char, MutableList<Coords>>,Size
 fun day08_part01(input: MutableMap<Char, MutableList<Coords>>, size: Size): Int {
     val height = size.height
     val width = size.width
-    val mutableSet = mutableSetOf<Coords>()
-    for((node, coords) in input) {
-        for((index, coord) in coords.withIndex()) {
+    val hashMap = hashMapOf<Coords, Boolean>()
+    for((_, coords) in input) {
+        for(coord in coords) {
             for(subcoord in coords) {
                 if (subcoord == coord) continue
                 val vector = Coords(subcoord.x - coord.x, subcoord.y - coord.y)
                 val newCoords = Coords(subcoord.x + vector.x, subcoord.y + vector.y)
                 if((newCoords.x in 0..<width) &&
                     (newCoords.y in 0..<height))
-                    mutableSet.add(newCoords)
+                    hashMap[newCoords] = true
             }
         }
     }
-    return mutableSet.count()
+    return hashMap.count()
 }
 
 fun day08_part02(input: MutableMap<Char, MutableList<Coords>>, size: Size): Int {
     val height = size.height
     val width = size.width
-    val mutableSet = mutableSetOf<Coords>()
-    for((node, coords) in input) {
-        for((index, coord) in coords.withIndex()) {
-            mutableSet.add(coord)
+    val hashMap = hashMapOf<Coords, Boolean>()
+    for((_, coords) in input) {
+        for(coord in coords) {
+            hashMap[coord] = true
             for(subcoord in coords) {
                 if (subcoord == coord) continue
                 val vector = subcoord.minus(coord.x, coord.y)
                 var newCoords = subcoord.plus(vector.x, vector.y)
                 while((newCoords.x in 0..<width) &&
                     (newCoords.y in 0..<height)) {
-                    mutableSet.add(newCoords)
+                    hashMap[newCoords] = true
                     newCoords = newCoords.plus(vector.x, vector.y)
                 }
             }
         }
     }
-    return mutableSet.count()
+    return hashMap.count()
 }
 
 fun main() {
@@ -91,7 +91,6 @@ fun main() {
 
     val title = "Advent Of Code 2024 - Day 08"
     println(ANSI.GREEN + title + ANSI.RESET + "\n" +
-            "Input: " + ANSI.BLUE + path.name + ANSI.RESET + "\n" +
             (ANSI.RED + "-" + ANSI.RESET).repeat(title.length))
     println("Got the list in " + convertTime(elapsedLoadFile) + "\n" +
             "First Part:  " + ANSI.BLUE + part01 + ANSI.RESET + " (" + convertTime(elapsedPart01) + ")\n" +
